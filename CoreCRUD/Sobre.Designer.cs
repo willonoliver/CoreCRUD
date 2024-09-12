@@ -107,7 +107,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(454, 331);
             Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "Sobre";
             Text = "Sobre";
             panel1.ResumeLayout(false);

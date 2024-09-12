@@ -34,6 +34,7 @@
             timer1 = new System.Windows.Forms.Timer(components);
             menuStrip1 = new MenuStrip();
             cadastroToolStripMenuItem = new ToolStripMenuItem();
+            empresaToolStripMenuItem = new ToolStripMenuItem();
             movimentaçõesToolStripMenuItem = new ToolStripMenuItem();
             relatóriosToolStripMenuItem = new ToolStripMenuItem();
             configuraçõesToolStripMenuItem = new ToolStripMenuItem();
@@ -67,15 +68,24 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, movimentaçõesToolStripMenuItem, relatóriosToolStripMenuItem, configuraçõesToolStripMenuItem, sobreToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
+            menuStrip1.RenderMode = ToolStripRenderMode.System;
             menuStrip1.Size = new Size(933, 24);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
             // cadastroToolStripMenuItem
             // 
+            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { empresaToolStripMenuItem });
             cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             cadastroToolStripMenuItem.Size = new Size(66, 20);
             cadastroToolStripMenuItem.Text = "Cadastro";
+            // 
+            // empresaToolStripMenuItem
+            // 
+            empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
+            empresaToolStripMenuItem.Size = new Size(180, 22);
+            empresaToolStripMenuItem.Text = "Empresa";
+            empresaToolStripMenuItem.Click += EmpresaToolStripMenuItem_Click;
             // 
             // movimentaçõesToolStripMenuItem
             // 
@@ -109,10 +119,11 @@
             ClientSize = new Size(933, 346);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4, 3, 4, 3);
             Name = "MenuPrincipal";
-            Text = "MenuPrincipal";
+            Text = "MenuPrincipal - CoreCRUD";
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -132,5 +143,6 @@
         private ToolStripMenuItem relatóriosToolStripMenuItem;
         private ToolStripMenuItem configuraçõesToolStripMenuItem;
         private ToolStripMenuItem sobreToolStripMenuItem;
+        private ToolStripMenuItem empresaToolStripMenuItem;
     }
 }

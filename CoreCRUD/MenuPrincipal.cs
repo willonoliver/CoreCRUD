@@ -51,5 +51,10 @@ namespace CoreCRUD
             base.OnFormClosing(e);
             Application.Exit(); // Encerra toda a pilha de execução ao fechar a janela
         }
+
+        private void EmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
