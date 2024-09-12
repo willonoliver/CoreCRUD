@@ -1,0 +1,11 @@
+{
+  "DatabaseConfig": {
+    "Directory": "C:\\CoreCRUD\\CORECRUD.FDB",
+    "Host": "localhost",
+    "Port": "3050",
+    "User": "SYSDBA",
+    "Password": "masterkey",
+    "Charset": "UTF8",
+    "Dialect": "3"
+  }
+}
