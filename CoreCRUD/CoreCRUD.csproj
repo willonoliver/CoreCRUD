@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFrameworkCore.FirebirdSQL" Version="2.1.2.2" />
+    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="10.3.1" />
+    <PackageReference Include="FirebirdSql.EntityFrameworkCore.Firebird" Version="11.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

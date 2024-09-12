@@ -16,5 +16,25 @@ namespace CoreCRUD
         {
             InitializeComponent();
         }
+
+        private void usuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void senha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fazerlogin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void criarlogin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

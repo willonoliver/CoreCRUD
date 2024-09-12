@@ -1,0 +1,11 @@
+{
+  "DatabaseConfig": {
+    "Directory": "C:/CoreCRUD/SISTEMA.FDB",
+    "Port": "3050",
+    "Charset": "UTF-8",
+    "User": "SYSDBA",
+    "Password": "masterkey",
+    "Dialect": "3",
+    "Host": "127.0.0.1"
+  }
+}
