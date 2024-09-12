@@ -59,7 +59,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.CoreCRUD;
-            pictureBox1.Location = new Point(88, 28);
+            pictureBox1.Location = new Point(83, 13);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(257, 50);
             pictureBox1.TabIndex = 6;
@@ -68,34 +68,38 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(106, 170);
+            label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            label2.Location = new Point(102, 167);
             label2.Name = "label2";
-            label2.Size = new Size(39, 15);
+            label2.Size = new Size(51, 20);
             label2.TabIndex = 5;
             label2.Text = "Senha";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(106, 93);
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold);
+            label1.Location = new Point(102, 90);
             label1.Name = "label1";
-            label1.Size = new Size(47, 15);
+            label1.Size = new Size(63, 20);
             label1.TabIndex = 4;
             label1.Text = "Usuário";
             // 
             // usuario
             // 
-            usuario.Location = new Point(106, 126);
+            usuario.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            usuario.Location = new Point(102, 123);
             usuario.Name = "usuario";
-            usuario.Size = new Size(212, 23);
+            usuario.Size = new Size(212, 25);
             usuario.TabIndex = 3;
             usuario.TextChanged += usuario_TextChanged;
             // 
             // senha
             // 
-            senha.Location = new Point(106, 188);
+            senha.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            senha.Location = new Point(102, 185);
             senha.Name = "senha";
-            senha.Size = new Size(212, 23);
+            senha.Size = new Size(212, 25);
             senha.TabIndex = 2;
             senha.TextChanged += senha_TextChanged;
             // 
