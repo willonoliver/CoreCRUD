@@ -63,9 +63,9 @@ namespace CoreCRUD.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CoreCRUD {
+        internal static System.Drawing.Bitmap logo_CoreCRUD {
             get {
-                object obj = ResourceManager.GetObject("CoreCRUD", resourceCulture);
+                object obj = ResourceManager.GetObject("logo-CoreCRUD", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
