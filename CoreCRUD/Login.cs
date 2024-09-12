@@ -50,7 +50,11 @@ namespace CoreCRUD
                         if (result != null)
                         {
                             MessageBox.Show("Login realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            // Aqui você pode redirecionar para outra tela ou realizar outras ações
+
+                            // Iniciar o formulário MenuPrincipal
+                            MenuPrincipal menuPrincipalForm = new MenuPrincipal();
+                            menuPrincipalForm.Show();
+                            this.Hide(); // Esconder o formulário de login
                         }
                         else
                         {
@@ -155,4 +159,5 @@ namespace CoreCRUD
         }
     }
 }
+
 
