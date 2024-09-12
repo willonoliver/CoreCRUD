@@ -1,6 +1,6 @@
 {
   "DatabaseConfig": {
-    "Directory": "C:\\CoreCRUD\\CRUD\\SISTEMA.FDB",
+    "Directory": "C:\\CoreCRUD\\CORECRUD.FDB",
     "Host": "localhost",
     "Port": "3050",
     "User": "SYSDBA",
