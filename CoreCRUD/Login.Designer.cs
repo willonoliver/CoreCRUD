@@ -105,6 +105,7 @@
             // 
             // criarlogin
             // 
+            criarlogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             criarlogin.Location = new Point(278, 236);
             criarlogin.Name = "criarlogin";
             criarlogin.Size = new Size(126, 51);
@@ -115,6 +116,7 @@
             // 
             // fazerlogin
             // 
+            fazerlogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             fazerlogin.Location = new Point(27, 236);
             fazerlogin.Name = "fazerlogin";
             fazerlogin.Size = new Size(126, 51);
