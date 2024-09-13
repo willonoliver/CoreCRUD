@@ -51,8 +51,8 @@ namespace CoreCRUD
                         {
                             MessageBox.Show("Login realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // Iniciar o formulário MenuPrincipal
-                            MenuPrincipal menuPrincipalForm = new MenuPrincipal();
+                            // Iniciar o formulário MenuPrincipal com o nome do usuário
+                            MenuPrincipal menuPrincipalForm = new MenuPrincipal(usuario.Text);
                             menuPrincipalForm.Show();
                             this.Hide(); // Esconder o formulário de login
                         }
@@ -159,5 +159,3 @@ namespace CoreCRUD
         }
     }
 }
-
-

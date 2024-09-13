@@ -35,6 +35,7 @@
             menuStrip1 = new MenuStrip();
             cadastroToolStripMenuItem = new ToolStripMenuItem();
             empresaToolStripMenuItem = new ToolStripMenuItem();
+            fornecedoresToolStripMenuItem = new ToolStripMenuItem();
             movimentaçõesToolStripMenuItem = new ToolStripMenuItem();
             relatóriosToolStripMenuItem = new ToolStripMenuItem();
             configuraçõesToolStripMenuItem = new ToolStripMenuItem();
@@ -75,7 +76,7 @@
             // 
             // cadastroToolStripMenuItem
             // 
-            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { empresaToolStripMenuItem });
+            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { empresaToolStripMenuItem, fornecedoresToolStripMenuItem });
             cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             cadastroToolStripMenuItem.Size = new Size(66, 20);
             cadastroToolStripMenuItem.Text = "Cadastro";
@@ -86,6 +87,13 @@
             empresaToolStripMenuItem.Size = new Size(180, 22);
             empresaToolStripMenuItem.Text = "Empresa";
             empresaToolStripMenuItem.Click += EmpresaToolStripMenuItem_Click;
+            // 
+            // fornecedoresToolStripMenuItem
+            // 
+            fornecedoresToolStripMenuItem.Name = "fornecedoresToolStripMenuItem";
+            fornecedoresToolStripMenuItem.Size = new Size(180, 22);
+            fornecedoresToolStripMenuItem.Text = "Fornecedores";
+            fornecedoresToolStripMenuItem.Click += fornecedoresToolStripMenuItem_Click;
             // 
             // movimentaçõesToolStripMenuItem
             // 
@@ -144,5 +152,6 @@
         private ToolStripMenuItem configuraçõesToolStripMenuItem;
         private ToolStripMenuItem sobreToolStripMenuItem;
         private ToolStripMenuItem empresaToolStripMenuItem;
+        private ToolStripMenuItem fornecedoresToolStripMenuItem;
     }
 }

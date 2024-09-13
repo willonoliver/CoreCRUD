@@ -1,6 +1,6 @@
 ﻿namespace CoreCRUD
 {
-    partial class Empresa
+    partial class Fornecedores
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
             InscricaoEstadual = new TextBox();
             email = new TextBox();
             label12 = new Label();
@@ -57,43 +56,11 @@
             Gravar = new Button();
             Alterar = new Button();
             label1 = new Label();
+            panel1 = new Panel();
+            Pesquisar = new Button();
+            Incluir = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(InscricaoEstadual);
-            panel1.Controls.Add(email);
-            panel1.Controls.Add(label12);
-            panel1.Controls.Add(celular);
-            panel1.Controls.Add(label11);
-            panel1.Controls.Add(telefone);
-            panel1.Controls.Add(label10);
-            panel1.Controls.Add(label9);
-            panel1.Controls.Add(comboBoxUF);
-            panel1.Controls.Add(label8);
-            panel1.Controls.Add(Complemento);
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(CNPJ);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(NomeCidade);
-            panel1.Controls.Add(Cidade);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(CEP);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(Numero);
-            panel1.Controls.Add(Endereco);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(NomeFantasia);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(NomeEmpresa);
-            panel1.Controls.Add(Gravar);
-            panel1.Controls.Add(Alterar);
-            panel1.Controls.Add(label1);
-            panel1.Location = new Point(12, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(443, 439);
-            panel1.TabIndex = 0;
             // 
             // InscricaoEstadual
             // 
@@ -337,9 +304,9 @@
             // Gravar
             // 
             Gravar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Gravar.Location = new Point(305, 385);
+            Gravar.Location = new Point(164, 12);
             Gravar.Name = "Gravar";
-            Gravar.Size = new Size(120, 40);
+            Gravar.Size = new Size(70, 40);
             Gravar.TabIndex = 2;
             Gravar.Text = "Gravar";
             Gravar.UseVisualStyleBackColor = true;
@@ -348,9 +315,9 @@
             // Alterar
             // 
             Alterar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Alterar.Location = new Point(12, 385);
+            Alterar.Location = new Point(88, 12);
             Alterar.Name = "Alterar";
-            Alterar.Size = new Size(120, 40);
+            Alterar.Size = new Size(70, 40);
             Alterar.TabIndex = 1;
             Alterar.Text = "Alterar";
             Alterar.UseVisualStyleBackColor = true;
@@ -366,16 +333,72 @@
             label1.TabIndex = 0;
             label1.Text = "Nome empresa:";
             // 
-            // Empresa
+            // panel1
+            // 
+            panel1.Controls.Add(InscricaoEstadual);
+            panel1.Controls.Add(email);
+            panel1.Controls.Add(label12);
+            panel1.Controls.Add(celular);
+            panel1.Controls.Add(label11);
+            panel1.Controls.Add(telefone);
+            panel1.Controls.Add(label10);
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(comboBoxUF);
+            panel1.Controls.Add(label8);
+            panel1.Controls.Add(Complemento);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(CNPJ);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(NomeCidade);
+            panel1.Controls.Add(Cidade);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(CEP);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(Numero);
+            panel1.Controls.Add(Endereco);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(NomeFantasia);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(NomeEmpresa);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(12, 72);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(443, 381);
+            panel1.TabIndex = 1;
+            // 
+            // Pesquisar
+            // 
+            Pesquisar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            Pesquisar.Location = new Point(385, 12);
+            Pesquisar.Name = "Pesquisar";
+            Pesquisar.Size = new Size(70, 40);
+            Pesquisar.TabIndex = 3;
+            Pesquisar.Text = "Pesquisar";
+            Pesquisar.UseVisualStyleBackColor = true;
+            Pesquisar.Click += Pesquisar_Click;
+            // 
+            // Incluir
+            // 
+            Incluir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            Incluir.Location = new Point(12, 12);
+            Incluir.Name = "Incluir";
+            Incluir.Size = new Size(70, 40);
+            Incluir.TabIndex = 4;
+            Incluir.Text = "Incluir";
+            Incluir.UseVisualStyleBackColor = true;
+            // 
+            // Fornecedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(466, 463);
+            ClientSize = new Size(469, 468);
+            Controls.Add(Incluir);
+            Controls.Add(Pesquisar);
             Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Name = "Empresa";
-            Text = "Empresa";
-            Load += Empresa_Load;
+            Controls.Add(Gravar);
+            Controls.Add(Alterar);
+            Name = "Fornecedores";
+            Text = "Fornecedores";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -383,35 +406,36 @@
 
         #endregion
 
-        private Panel panel1;
-        private Button Gravar;
-        private Button Alterar;
-        private Label label1;
-        private TextBox NomeEmpresa;
-        private Label label2;
-        private TextBox NomeFantasia;
-        private Label label6;
-        private TextBox CNPJ;
-        private Label label7;
         private TextBox InscricaoEstadual;
-        private Label label3;
-        private TextBox Endereco;
-        private Label label4;
-        private TextBox Numero;
-        private Label label8;
-        private TextBox Complemento;
-        private Label label5;
-        private TextBox CEP;
-        private Label Cidade;
-        private TextBox NomeCidade;
-        private Label label9;
-        private ComboBox comboBoxUF;
-        private Label label10;
+        private TextBox email;
+        private Label label12;
         private TextBox celular;
         private Label label11;
         private TextBox telefone;
-        private Label label12;
-        private TextBox email;
-
+        private Label label10;
+        private Label label9;
+        private ComboBox comboBoxUF;
+        private Label label8;
+        private TextBox Complemento;
+        private Label label7;
+        private TextBox CNPJ;
+        private Label label6;
+        private TextBox NomeCidade;
+        private Label Cidade;
+        private Label label5;
+        private TextBox CEP;
+        private Label label4;
+        private TextBox Numero;
+        private TextBox Endereco;
+        private Label label3;
+        private TextBox NomeFantasia;
+        private Label label2;
+        private TextBox NomeEmpresa;
+        private Button Gravar;
+        private Button Alterar;
+        private Label label1;
+        private Panel panel1;
+        private Button Pesquisar;
+        private Button Incluir;
     }
 }
