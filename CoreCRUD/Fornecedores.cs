@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using FirebirdSql.Data.FirebirdClient;
 
 namespace CoreCRUD
 {
@@ -8,156 +9,185 @@ namespace CoreCRUD
         public Fornecedores()
         {
             InitializeComponent();
-            InicializarEstadoInicial();
-            Incluir.Click += new EventHandler(Incluir_Click);
-            Gravar.Click += new EventHandler(Gravar_Click);
+            this.Load += Fornecedores_Load;
         }
 
-        private void InicializarEstadoInicial()
+        private void Fornecedores_Load(object sender, EventArgs e)
         {
-            // Desabilitar todos os campos
-            InscricaoEstadual.Enabled = false;
-            email.Enabled = false;
-            celular.Enabled = false;
-            telefone.Enabled = false;
-            comboBoxUF.Enabled = false;
-            Complemento.Enabled = false;
-            CNPJ.Enabled = false;
-            NomeCidade.Enabled = false;
-            CEP.Enabled = false;
-            Numero.Enabled = false;
-            Endereco.Enabled = false;
-            NomeFantasia.Enabled = false;
-            NomeEmpresa.Enabled = false;
-
-            // Desabilitar botões Alterar e Gravar
-            Alterar.Enabled = false;
-            Gravar.Enabled = false;
-
-            // Habilitar botão Incluir
+            // Definir o estado inicial dos botões
             Incluir.Enabled = true;
-
-            // Desabilitar botão Pesquisar
-            Pesquisar.Enabled = false;
-        }
-
-        private void HabilitarCampos()
-        {
-            // Habilitar todos os campos
-            InscricaoEstadual.Enabled = true;
-            email.Enabled = true;
-            celular.Enabled = true;
-            telefone.Enabled = true;
-            comboBoxUF.Enabled = true;
-            Complemento.Enabled = true;
-            CNPJ.Enabled = true;
-            NomeCidade.Enabled = true;
-            CEP.Enabled = true;
-            Numero.Enabled = true;
-            Endereco.Enabled = true;
-            NomeFantasia.Enabled = true;
-            NomeEmpresa.Enabled = true;
-        }
-
-        private void Incluir_Click(object? sender, EventArgs e)
-        {
-            // Habilitar todos os campos
-            HabilitarCampos();
-
-            // Habilitar botão Gravar
-            Gravar.Enabled = true;
-
-            // Desabilitar botões Incluir, Alterar e Pesquisar
-            Incluir.Enabled = false;
+            Pesquisar.Enabled = true;
+            Gravar.Enabled = false;
             Alterar.Enabled = false;
+        }
+
+        private void Incluir_Click(object sender, EventArgs e)
+        {
+            // Limpar os campos para inclusão de um novo fornecedor
+            LimparCampos();
+
+            // Alterar o estado dos botões
+            Incluir.Enabled = false;
             Pesquisar.Enabled = false;
+            Gravar.Enabled = true;
         }
 
-        private void Gravar_Click(object? sender, EventArgs e)
+        private void Gravar_Click(object sender, EventArgs e)
         {
-            // Lógica para gravar os dados
-            MessageBox.Show("Dados gravados com sucesso!");
+            if (!ValidarCampos())
+            {
+                MessageBox.Show("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
 
-            // Voltar ao estado inicial
-            InicializarEstadoInicial();
+            string createTableQuery = @"
+                   CREATE TABLE CADFORNECEDORES (
+                       ID INTEGER NOT NULL PRIMARY KEY,
+                       NOMEEMPRESA VARCHAR(100),
+                       NOMEFANTASIA VARCHAR(100),
+                       CNPJ VARCHAR(20),
+                       INSCRICAOESTADUAL VARCHAR(20),
+                       ENDERECO VARCHAR(100),
+                       NUMERO VARCHAR(10),
+                       COMPLEMENTO VARCHAR(50),
+                       CEP VARCHAR(10),
+                       NOMECIDADE VARCHAR(50),
+                       UF VARCHAR(2),
+                       CELULAR VARCHAR(15),
+                       TELEFONE VARCHAR(15),
+                       EMAIL VARCHAR(100),
+                       DATAALTERACAO TIMESTAMP
+                   )";
+
+            string insertQuery = "INSERT INTO CADFORNECEDORES (NOMEEMPRESA, NOMEFANTASIA, CNPJ, INSCRICAOESTADUAL, ENDERECO, NUMERO, COMPLEMENTO, CEP, NOMECIDADE, UF, CELULAR, TELEFONE, EMAIL, DATAALTERACAO) " +
+                                 "VALUES (@NomeEmpresa, @NomeFantasia, @CNPJ, @InscricaoEstadual, @Endereco, @Numero, @Complemento, @CEP, @NomeCidade, @UF, @Celular, @Telefone, @Email, @DataAlteracao)";
+
+            try
+            {
+                using (var connection = ConfigReader.GetDatabaseConnection())
+                {
+                    connection.Open();
+
+                    // Verificar se a tabela existe e criar se necessário
+                    if (!TabelaExiste(connection, "CADFORNECEDORES"))
+                    {
+                        using (var createCommand = new FbCommand(createTableQuery, connection))
+                        {
+                            createCommand.ExecuteNonQuery();
+                        }
+
+                        // Criar gerador e gatilho
+                        using (var createGeneratorCommand = new FbCommand("CREATE GENERATOR GEN_CADFORNECEDORES_ID; SET GENERATOR GEN_CADFORNECEDORES_ID TO 0;", connection))
+                        {
+                            createGeneratorCommand.ExecuteNonQuery();
+                        }
+
+                        using (var createTriggerCommand = new FbCommand(@"
+                               CREATE TRIGGER BI_CADFORNECEDORES_ID FOR CADFORNECEDORES
+                               ACTIVE BEFORE INSERT POSITION 0
+                               AS
+                               BEGIN
+                                 IF (NEW.ID IS NULL) THEN
+                                   NEW.ID = GEN_ID(GEN_CADFORNECEDORES_ID, 1);
+                               END;", connection))
+                        {
+                            createTriggerCommand.ExecuteNonQuery();
+                        }
+                    }
+
+                    using (var command = new FbCommand(insertQuery, connection))
+                    {
+                        AdicionarParametros(command);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show("Novo Fornecedor criado com sucesso!");
+                LimparCampos();
+
+                // Alterar o estado dos botões
+                Incluir.Enabled = true;
+                Pesquisar.Enabled = true;
+                Gravar.Enabled = false;
+            }
+            catch (FbException fbEx)
+            {
+                MessageBox.Show("Erro ao criar novo Fornecedor: " + fbEx.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro inesperado: " + ex.Message);
+            }
         }
 
-        private void Alterar_Click(object? sender, EventArgs e)
+        private bool TabelaExiste(FbConnection connection, string tableName)
         {
-            // Lógica para alterar os dados
-            MessageBox.Show("Dados alterados com sucesso!");
+            string query = $"SELECT COUNT(*) FROM RDB$RELATIONS WHERE RDB$RELATION_NAME = '{tableName.ToUpper()}'";
+            using (var command = new FbCommand(query, connection))
+            {
+                return (long)command.ExecuteScalar() > 0;
+            }
         }
 
-        private void Pesquisar_Click(object? sender, EventArgs e)
+        private void Alterar_Click(object sender, EventArgs e)
         {
-            // Lógica para pesquisar os dados
-            MessageBox.Show("Pesquisa realizada com sucesso!");
+            // Lógica para alterar um fornecedor existente
         }
 
-        // Outros eventos e lógica podem ser adicionados aqui
-        private void InscricaoEstadual_TextChanged(object? sender, EventArgs e)
+        private void Pesquisar_Click(object sender, EventArgs e)
         {
-            // Lógica para quando o texto do campo InscricaoEstadual mudar
+            // Lógica para pesquisar fornecedores
         }
 
-        private void email_TextChanged(object? sender, EventArgs e)
+        private void LimparCampos()
         {
-            // Lógica para quando o texto do campo email mudar
+            NomeEmpresa.Text = "";
+            NomeFantasia.Text = "";
+            CNPJ.Text = "";
+            InscricaoEstadual.Text = "";
+            Endereco.Text = "";
+            Numero.Text = "";
+            Complemento.Text = "";
+            CEP.Text = "";
+            NomeCidade.Text = "";
+            comboBoxUF.SelectedIndex = -1;
+            celular.Text = "";
+            telefone.Text = "";
+            email.Text = "";
         }
 
-        private void celular_TextChanged(object? sender, EventArgs e)
+        private bool ValidarCampos()
         {
-            // Lógica para quando o texto do campo celular mudar
+            // Adicione aqui a lógica de validação dos campos
+            return !string.IsNullOrWhiteSpace(NomeEmpresa.Text) &&
+                   !string.IsNullOrWhiteSpace(NomeFantasia.Text) &&
+                   !string.IsNullOrWhiteSpace(CNPJ.Text) &&
+                   !string.IsNullOrWhiteSpace(InscricaoEstadual.Text) &&
+                   !string.IsNullOrWhiteSpace(Endereco.Text) &&
+                   !string.IsNullOrWhiteSpace(Numero.Text) &&
+                   !string.IsNullOrWhiteSpace(CEP.Text) &&
+                   !string.IsNullOrWhiteSpace(NomeCidade.Text) &&
+                   comboBoxUF.SelectedIndex != -1 &&
+                   !string.IsNullOrWhiteSpace(celular.Text) &&
+                   !string.IsNullOrWhiteSpace(telefone.Text) &&
+                   !string.IsNullOrWhiteSpace(email.Text);
         }
 
-        private void telefone_TextChanged(object? sender, EventArgs e)
+        private void AdicionarParametros(FbCommand command)
         {
-            // Lógica para quando o texto do campo telefone mudar
-        }
-
-        private void comboBoxUF_SelectedIndexChanged(object? sender, EventArgs e)
-        {
-            // Lógica para quando o item selecionado no comboBoxUF mudar
-        }
-
-        private void Complemento_TextChanged(object? sender, EventArgs e)
-        {
-            // Lógica para quando o texto do campo Complemento mudar
-        }
-
-        private void CNPJ_TextChanged(object? sender, EventArgs e)
-        {
-            // Lógica para quando o texto do campo CNPJ mudar
-        }
-
-        private void NomeCidade_TextChanged(object? sender, EventArgs e)
-        {
-            // Lógica para quando o texto do campo NomeCidade mudar
-        }
-
-        private void CEP_TextChanged(object? sender, EventArgs e)
-        {
-            // Lógica para quando o texto do campo CEP mudar
-        }
-
-        private void Numero_TextChanged(object? sender, EventArgs e)
-        {
-            // Lógica para quando o texto do campo Numero mudar
-        }
-
-        private void Endereco_TextChanged(object? sender, EventArgs e)
-        {
-            // Lógica para quando o texto do campo Endereco mudar
-        }
-
-        private void NomeFantasia_TextChanged(object? sender, EventArgs e)
-        {
-            // Lógica para quando o texto do campo NomeFantasia mudar
-        }
-
-        private void NomeEmpresa_TextChanged(object? sender, EventArgs e)
-        {
-            // Lógica para quando o texto do campo NomeEmpresa mudar
+            command.Parameters.AddWithValue("@NomeEmpresa", NomeEmpresa.Text);
+            command.Parameters.AddWithValue("@NomeFantasia", NomeFantasia.Text);
+            command.Parameters.AddWithValue("@CNPJ", CNPJ.Text);
+            command.Parameters.AddWithValue("@InscricaoEstadual", InscricaoEstadual.Text);
+            command.Parameters.AddWithValue("@Endereco", Endereco.Text);
+            command.Parameters.AddWithValue("@Numero", Numero.Text);
+            command.Parameters.AddWithValue("@Complemento", Complemento.Text);
+            command.Parameters.AddWithValue("@CEP", CEP.Text);
+            command.Parameters.AddWithValue("@NomeCidade", NomeCidade.Text);
+            command.Parameters.AddWithValue("@UF", comboBoxUF.SelectedItem?.ToString() ?? string.Empty);
+            command.Parameters.AddWithValue("@Celular", celular.Text);
+            command.Parameters.AddWithValue("@Telefone", telefone.Text);
+            command.Parameters.AddWithValue("@Email", email.Text);
+            command.Parameters.AddWithValue("@DataAlteracao", DateTime.Now);
         }
     }
 }

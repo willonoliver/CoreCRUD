@@ -26,12 +26,16 @@ namespace CoreCRUD
 
         private void Empresa_Load(object sender, EventArgs e)
         {
-            // Verificar e criar tabela se necessário
-            VerificarECriarTabela();
-            // Carregar dados da empresa ao iniciar o formulário
-            CarregarDadosEmpresa();
-            // Desabilitar todos os campos e botões
-            SetControlsEnabled(false);
+            try
+            {
+                VerificarECriarTabela();
+                CarregarDadosEmpresa();
+                SetControlsEnabled(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar o formulário: " + ex.Message);
+            }
         }
 
         private void VerificarECriarTabela()
@@ -47,7 +51,6 @@ namespace CoreCRUD
                         var result = command.ExecuteScalar();
                         if (result == null)
                         {
-                            // Tabela não existe, criar tabela
                             string createTableQuery = @"
                                 CREATE TABLE CADEMPRESA (
                                     ID INTEGER NOT NULL PRIMARY KEY,
@@ -110,7 +113,6 @@ namespace CoreCRUD
                             }
                             else
                             {
-                                // Se não houver registros, criar um novo
                                 CriarNovoRegistro();
                             }
                         }
@@ -172,14 +174,12 @@ namespace CoreCRUD
 
         private void Alterar_Click(object sender, EventArgs e)
         {
-            // Habilitar todos os campos e o botão Gravar
             SetControlsEnabled(true);
         }
 
         private void Gravar_Click(object sender, EventArgs e)
         {
             GravarDadosEmpresa();
-            // Desabilitar todos os campos e o botão Gravar após a gravação
             SetControlsEnabled(false);
         }
 

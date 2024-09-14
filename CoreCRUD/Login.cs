@@ -21,16 +21,22 @@ namespace CoreCRUD
 
         private void usuario_TextChanged(object sender, EventArgs e)
         {
-
+            // Evento de mudança de texto do campo usuário
         }
 
         private void senha_TextChanged(object sender, EventArgs e)
         {
-
+            // Evento de mudança de texto do campo senha
         }
 
         private void fazerlogin_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(usuario.Text) || string.IsNullOrWhiteSpace(senha.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 using (var connection = ConfigReader.GetDatabaseConnection())
@@ -61,8 +67,6 @@ namespace CoreCRUD
                             MessageBox.Show("Usuário ou senha incorretos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-
-                    connection.Close();
                 }
             }
             catch (FbException fbEx)
@@ -77,6 +81,12 @@ namespace CoreCRUD
 
         private void criarlogin_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(usuario.Text) || string.IsNullOrWhiteSpace(senha.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 using (var connection = ConfigReader.GetDatabaseConnection())
@@ -145,7 +155,6 @@ namespace CoreCRUD
                     }
 
                     MessageBox.Show("Usuário criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    connection.Close();
                 }
             }
             catch (FbException fbEx)

@@ -8,7 +8,7 @@ namespace CoreCRUD
     public partial class MenuPrincipal : Form
     {
         private string nomeEmpresa = string.Empty; // Inicializa com uma string vazia
-        private string nomeUsuario;
+        private readonly string nomeUsuario;
 
         public MenuPrincipal(string usuario)
         {
@@ -24,17 +24,18 @@ namespace CoreCRUD
             if (screen != null)
             {
                 this.Width = screen.WorkingArea.Width;
-                this.Height = 170; // Ajusta a altura para 200
+                this.Height = 170; // Ajusta a altura para 170
             }
 
             // Carrega os dados da empresa
             CarregarDadosEmpresa();
 
             // Inicializa o texto do ToolStripStatusLabel
-            toolStripStatusLabel1.Text = $"Software Licenciado para: {nomeEmpresa}         |         Usuário conectado: {nomeUsuario}         |         {DateTime.Now.ToString("dd 'de' MMMM 'de' yyyy - HH:mm:ss")}";
+            AtualizarStatusLabel();
 
             // Inicializa o Timer
             timer1.Interval = 1000; // 1 segundo
+            timer1.Tick += Timer_Tick; // Adiciona o evento Tick
             timer1.Start(); // Inicia o Timer ao carregar o formulário
         }
 
@@ -60,13 +61,18 @@ namespace CoreCRUD
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar dados da empresa: " + ex.Message);
+                MessageBox.Show("Erro ao carregar dados da empresa: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = $"Software Licenciado para: {nomeEmpresa}         |         Usuário conectado: {nomeUsuario}         |         {DateTime.Now.ToString("dd 'de' MMMM 'de' yyyy - HH:mm:ss")}";
+            AtualizarStatusLabel();
+        }
+
+        private void AtualizarStatusLabel()
+        {
+            toolStripStatusLabel1.Text = $"Software Licenciado para: {nomeEmpresa}         |         Usuário conectado: {nomeUsuario}         |         {DateTime.Now:dd 'de' MMMM 'de' yyyy - HH:mm:ss}";
         }
 
         private void ToolStripStatusLabel1_Click(object sender, EventArgs e)
@@ -77,8 +83,10 @@ namespace CoreCRUD
         private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Abrir o formulário "Sobre"
-            Sobre sobreForm = new Sobre();
-            sobreForm.ShowDialog();
+            using (var sobreForm = new Sobre())
+            {
+                sobreForm.ShowDialog();
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -89,14 +97,18 @@ namespace CoreCRUD
 
         private void EmpresaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Empresa empresaForm = new Empresa();
-            empresaForm.ShowDialog();
+            using (var empresaForm = new Empresa())
+            {
+                empresaForm.ShowDialog();
+            }
         }
 
         private void fornecedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Fornecedores fornecedoresForm = new Fornecedores();
-            fornecedoresForm.ShowDialog();
+            using (var fornecedoresForm = new Fornecedores())
+            {
+                fornecedoresForm.ShowDialog();
+            }
         }
     }
 }

@@ -51,15 +51,17 @@
             Endereco = new TextBox();
             label3 = new Label();
             NomeFantasia = new TextBox();
+            panel1 = new Panel();
             label2 = new Label();
             NomeEmpresa = new TextBox();
+            label1 = new Label();
             Gravar = new Button();
             Alterar = new Button();
-            label1 = new Label();
-            panel1 = new Panel();
-            Pesquisar = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             Incluir = new Button();
+            Pesquisar = new Button();
             panel1.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // InscricaoEstadual
@@ -69,7 +71,6 @@
             InscricaoEstadual.Name = "InscricaoEstadual";
             InscricaoEstadual.Size = new Size(187, 23);
             InscricaoEstadual.TabIndex = 28;
-            InscricaoEstadual.TextChanged += InscricaoEstadual_TextChanged;
             // 
             // email
             // 
@@ -78,7 +79,6 @@
             email.Name = "email";
             email.Size = new Size(413, 23);
             email.TabIndex = 26;
-            email.TextChanged += email_TextChanged;
             // 
             // label12
             // 
@@ -97,7 +97,6 @@
             celular.Name = "celular";
             celular.Size = new Size(187, 23);
             celular.TabIndex = 25;
-            celular.TextChanged += celular_TextChanged;
             // 
             // label11
             // 
@@ -116,7 +115,6 @@
             telefone.Name = "telefone";
             telefone.Size = new Size(190, 23);
             telefone.TabIndex = 23;
-            telefone.TextChanged += telefone_TextChanged;
             // 
             // label10
             // 
@@ -147,7 +145,6 @@
             comboBoxUF.Name = "comboBoxUF";
             comboBoxUF.Size = new Size(80, 23);
             comboBoxUF.TabIndex = 19;
-            comboBoxUF.SelectedIndexChanged += comboBoxUF_SelectedIndexChanged;
             // 
             // label8
             // 
@@ -166,7 +163,6 @@
             Complemento.Name = "Complemento";
             Complemento.Size = new Size(133, 23);
             Complemento.TabIndex = 17;
-            Complemento.TextChanged += Complemento_TextChanged;
             // 
             // label7
             // 
@@ -185,7 +181,6 @@
             CNPJ.Name = "CNPJ";
             CNPJ.Size = new Size(187, 23);
             CNPJ.TabIndex = 13;
-            CNPJ.TextChanged += CNPJ_TextChanged;
             // 
             // label6
             // 
@@ -204,7 +199,6 @@
             NomeCidade.Name = "NomeCidade";
             NomeCidade.Size = new Size(282, 23);
             NomeCidade.TabIndex = 11;
-            NomeCidade.TextChanged += NomeCidade_TextChanged;
             // 
             // Cidade
             // 
@@ -233,7 +227,6 @@
             CEP.Name = "CEP";
             CEP.Size = new Size(136, 23);
             CEP.TabIndex = 9;
-            CEP.TextChanged += CEP_TextChanged;
             // 
             // label4
             // 
@@ -252,7 +245,6 @@
             Numero.Name = "Numero";
             Numero.Size = new Size(95, 23);
             Numero.TabIndex = 7;
-            Numero.TextChanged += Numero_TextChanged;
             // 
             // Endereco
             // 
@@ -261,7 +253,6 @@
             Endereco.Name = "Endereco";
             Endereco.Size = new Size(413, 23);
             Endereco.TabIndex = 5;
-            Endereco.TextChanged += Endereco_TextChanged;
             // 
             // label3
             // 
@@ -280,58 +271,6 @@
             NomeFantasia.Name = "NomeFantasia";
             NomeFantasia.Size = new Size(413, 23);
             NomeFantasia.TabIndex = 0;
-            NomeFantasia.TextChanged += NomeFantasia_TextChanged;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.Location = new Point(12, 61);
-            label2.Name = "label2";
-            label2.Size = new Size(90, 15);
-            label2.TabIndex = 4;
-            label2.Text = "Nome fantasia:";
-            // 
-            // NomeEmpresa
-            // 
-            NomeEmpresa.Font = new Font("Segoe UI", 9F);
-            NomeEmpresa.Location = new Point(12, 35);
-            NomeEmpresa.Name = "NomeEmpresa";
-            NomeEmpresa.Size = new Size(413, 23);
-            NomeEmpresa.TabIndex = 3;
-            NomeEmpresa.TextChanged += NomeEmpresa_TextChanged;
-            // 
-            // Gravar
-            // 
-            Gravar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Gravar.Location = new Point(164, 12);
-            Gravar.Name = "Gravar";
-            Gravar.Size = new Size(70, 40);
-            Gravar.TabIndex = 2;
-            Gravar.Text = "Gravar";
-            Gravar.UseVisualStyleBackColor = true;
-            Gravar.Click += Gravar_Click;
-            // 
-            // Alterar
-            // 
-            Alterar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Alterar.Location = new Point(88, 12);
-            Alterar.Name = "Alterar";
-            Alterar.Size = new Size(70, 40);
-            Alterar.TabIndex = 1;
-            Alterar.Text = "Alterar";
-            Alterar.UseVisualStyleBackColor = true;
-            Alterar.Click += Alterar_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(12, 17);
-            label1.Name = "label1";
-            label1.Size = new Size(95, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Nome empresa:";
             // 
             // panel1
             // 
@@ -361,46 +300,107 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(NomeEmpresa);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(12, 72);
+            panel1.Location = new Point(14, 66);
             panel1.Name = "panel1";
-            panel1.Size = new Size(443, 381);
+            panel1.Size = new Size(435, 380);
             panel1.TabIndex = 1;
             // 
-            // Pesquisar
+            // label2
             // 
-            Pesquisar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Pesquisar.Location = new Point(385, 12);
-            Pesquisar.Name = "Pesquisar";
-            Pesquisar.Size = new Size(70, 40);
-            Pesquisar.TabIndex = 3;
-            Pesquisar.Text = "Pesquisar";
-            Pesquisar.UseVisualStyleBackColor = true;
-            Pesquisar.Click += Pesquisar_Click;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label2.Location = new Point(12, 61);
+            label2.Name = "label2";
+            label2.Size = new Size(90, 15);
+            label2.TabIndex = 4;
+            label2.Text = "Nome fantasia:";
+            // 
+            // NomeEmpresa
+            // 
+            NomeEmpresa.Font = new Font("Segoe UI", 9F);
+            NomeEmpresa.Location = new Point(12, 35);
+            NomeEmpresa.Name = "NomeEmpresa";
+            NomeEmpresa.Size = new Size(413, 23);
+            NomeEmpresa.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label1.Location = new Point(12, 17);
+            label1.Name = "label1";
+            label1.Size = new Size(95, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Nome empresa:";
+            // 
+            // Gravar
+            // 
+            Gravar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            Gravar.Location = new Point(217, 3);
+            Gravar.Name = "Gravar";
+            Gravar.Size = new Size(101, 40);
+            Gravar.TabIndex = 2;
+            Gravar.Text = "Gravar";
+            Gravar.UseVisualStyleBackColor = true;
+            Gravar.Click += Gravar_Click;
+            // 
+            // Alterar
+            // 
+            Alterar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            Alterar.Location = new Point(110, 3);
+            Alterar.Name = "Alterar";
+            Alterar.Size = new Size(101, 40);
+            Alterar.TabIndex = 1;
+            Alterar.Text = "Alterar";
+            Alterar.UseVisualStyleBackColor = true;
+            Alterar.Click += Alterar_Click;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(Incluir);
+            flowLayoutPanel1.Controls.Add(Alterar);
+            flowLayoutPanel1.Controls.Add(Gravar);
+            flowLayoutPanel1.Controls.Add(Pesquisar);
+            flowLayoutPanel1.Location = new Point(11, 12);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(436, 48);
+            flowLayoutPanel1.TabIndex = 2;
             // 
             // Incluir
             // 
             Incluir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Incluir.Location = new Point(12, 12);
+            Incluir.Location = new Point(3, 3);
             Incluir.Name = "Incluir";
-            Incluir.Size = new Size(70, 40);
-            Incluir.TabIndex = 4;
+            Incluir.Size = new Size(101, 40);
+            Incluir.TabIndex = 3;
             Incluir.Text = "Incluir";
             Incluir.UseVisualStyleBackColor = true;
+            Incluir.Click += Incluir_Click;
+            // 
+            // Pesquisar
+            // 
+            Pesquisar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            Pesquisar.Location = new Point(324, 3);
+            Pesquisar.Name = "Pesquisar";
+            Pesquisar.Size = new Size(101, 40);
+            Pesquisar.TabIndex = 4;
+            Pesquisar.Text = "Pesquisar";
+            Pesquisar.UseVisualStyleBackColor = true;
+            Pesquisar.Click += Pesquisar_Click;
             // 
             // Fornecedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(469, 468);
-            Controls.Add(Incluir);
-            Controls.Add(Pesquisar);
+            ClientSize = new Size(464, 461);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(panel1);
-            Controls.Add(Gravar);
-            Controls.Add(Alterar);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "Fornecedores";
             Text = "Fornecedores";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -429,13 +429,14 @@
         private TextBox Endereco;
         private Label label3;
         private TextBox NomeFantasia;
+        private Panel panel1;
         private Label label2;
         private TextBox NomeEmpresa;
+        private Label label1;
         private Button Gravar;
         private Button Alterar;
-        private Label label1;
-        private Panel panel1;
-        private Button Pesquisar;
+        private FlowLayoutPanel flowLayoutPanel1;
         private Button Incluir;
+        private Button Pesquisar;
     }
 }
