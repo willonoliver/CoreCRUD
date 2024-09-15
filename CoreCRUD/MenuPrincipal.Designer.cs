@@ -35,13 +35,10 @@
             menuStrip1 = new MenuStrip();
             cadastroToolStripMenuItem = new ToolStripMenuItem();
             empresaToolStripMenuItem = new ToolStripMenuItem();
+            clientesToolStripMenuItem = new ToolStripMenuItem();
             fornecedoresToolStripMenuItem = new ToolStripMenuItem();
             usuáriosToolStripMenuItem = new ToolStripMenuItem();
-            movimentaçõesToolStripMenuItem = new ToolStripMenuItem();
-            relatóriosToolStripMenuItem = new ToolStripMenuItem();
-            configuraçõesToolStripMenuItem = new ToolStripMenuItem();
             sobreToolStripMenuItem = new ToolStripMenuItem();
-            clientesToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -68,7 +65,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, movimentaçõesToolStripMenuItem, relatóriosToolStripMenuItem, configuraçõesToolStripMenuItem, sobreToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, sobreToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.System;
@@ -78,7 +75,7 @@
             // 
             // cadastroToolStripMenuItem
             // 
-            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { empresaToolStripMenuItem, fornecedoresToolStripMenuItem, usuáriosToolStripMenuItem, clientesToolStripMenuItem });
+            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { empresaToolStripMenuItem, clientesToolStripMenuItem, fornecedoresToolStripMenuItem, usuáriosToolStripMenuItem });
             cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             cadastroToolStripMenuItem.Size = new Size(66, 20);
             cadastroToolStripMenuItem.Text = "Cadastro";
@@ -89,6 +86,13 @@
             empresaToolStripMenuItem.Size = new Size(180, 22);
             empresaToolStripMenuItem.Text = "Empresa";
             empresaToolStripMenuItem.Click += EmpresaToolStripMenuItem_Click;
+            // 
+            // clientesToolStripMenuItem
+            // 
+            clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            clientesToolStripMenuItem.Size = new Size(180, 22);
+            clientesToolStripMenuItem.Text = "Clientes";
+            clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
             // 
             // fornecedoresToolStripMenuItem
             // 
@@ -104,37 +108,12 @@
             usuáriosToolStripMenuItem.Text = "Usuários";
             usuáriosToolStripMenuItem.Click += usuáriosToolStripMenuItem_Click;
             // 
-            // movimentaçõesToolStripMenuItem
-            // 
-            movimentaçõesToolStripMenuItem.Name = "movimentaçõesToolStripMenuItem";
-            movimentaçõesToolStripMenuItem.Size = new Size(104, 20);
-            movimentaçõesToolStripMenuItem.Text = "Movimentações";
-            // 
-            // relatóriosToolStripMenuItem
-            // 
-            relatóriosToolStripMenuItem.Name = "relatóriosToolStripMenuItem";
-            relatóriosToolStripMenuItem.Size = new Size(71, 20);
-            relatóriosToolStripMenuItem.Text = "Relatórios";
-            // 
-            // configuraçõesToolStripMenuItem
-            // 
-            configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
-            configuraçõesToolStripMenuItem.Size = new Size(96, 20);
-            configuraçõesToolStripMenuItem.Text = "Configurações";
-            // 
             // sobreToolStripMenuItem
             // 
             sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
             sobreToolStripMenuItem.Size = new Size(49, 20);
             sobreToolStripMenuItem.Text = "Sobre";
             sobreToolStripMenuItem.Click += sobreToolStripMenuItem_Click;
-            // 
-            // clientesToolStripMenuItem
-            // 
-            clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            clientesToolStripMenuItem.Size = new Size(180, 22);
-            clientesToolStripMenuItem.Text = "Clientes";
-            clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
             // 
             // MenuPrincipal
             // 

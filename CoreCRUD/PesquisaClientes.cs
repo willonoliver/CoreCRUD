@@ -26,8 +26,9 @@ namespace CoreCRUD
         {
             string query = @"
                 SELECT 
-                    ID, NOMECLIENTE, RG, CPF, ENDERECO, NUMERO, COMPLEMENTO, 
-                    CEP, CIDADE, UF, CELULAR, TELEFONE, EMAIL 
+                    ID, NOMECLIENTE, NOMEFANTASIA, CNPJCPF, INSCRICAOESTADUAL, 
+                    ENDERECO, NUMERO, COMPLEMENTO, CEP, NOMECIDADE, UF, 
+                    CELULAR, TELEFONE, EMAIL, TIPOCLIENTE 
                 FROM 
                     CADCLIENTES";
 
@@ -36,9 +37,9 @@ namespace CoreCRUD
                 query += @"
                     WHERE 
                         UPPER(NOMECLIENTE) LIKE UPPER(@filtro) OR 
-                        UPPER(RG) LIKE UPPER(@filtro) OR 
-                        UPPER(CPF) LIKE UPPER(@filtro) OR 
-                        UPPER(CIDADE) LIKE UPPER(@filtro)";
+                        UPPER(NOMEFANTASIA) LIKE UPPER(@filtro) OR 
+                        UPPER(CNPJCPF) LIKE UPPER(@filtro) OR 
+                        UPPER(NOMECIDADE) LIKE UPPER(@filtro)";
             }
 
             try

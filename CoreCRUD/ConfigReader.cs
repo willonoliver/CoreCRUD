@@ -29,10 +29,10 @@ namespace CoreCRUD
                 throw new InvalidOperationException("O arquivo de configuração está vazio.");
             }
 
-            JObject config;
+            JObject? config;
             try
             {
-                config = (JObject)JObject.Parse(configContent)["DatabaseConfig"];
+                config = (JObject?)JObject.Parse(configContent)["DatabaseConfig"];
             }
             catch (JsonReaderException ex)
             {

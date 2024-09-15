@@ -121,9 +121,9 @@ namespace CoreCRUD
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var clientesForm = new Clientes())
-            {
-                clientesForm.ShowDialog();
+            using (var Clientes = new Clientes())
+            { 
+                Clientes.ShowDialog();
             }
         }
     }
