@@ -14,6 +14,12 @@ namespace CoreCRUD
             InitializeComponent();
             InicializarEstado();
             CarregarUsuarios();
+            this.StartPosition = FormStartPosition.Manual;
+            var primaryScreen = Screen.PrimaryScreen;
+            if (primaryScreen != null)
+            {
+                this.Location = new Point(0, primaryScreen.WorkingArea.Height - this.Height);
+            }
         }
 
         private void InicializarEstado()

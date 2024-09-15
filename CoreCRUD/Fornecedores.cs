@@ -6,10 +6,18 @@ namespace CoreCRUD
 {
     public partial class Fornecedores : Form
     {
+        private int? fornecedorId = null; // Variável para armazenar o ID do fornecedor selecionado
+
         public Fornecedores()
         {
             InitializeComponent();
             this.Load += Fornecedores_Load;
+            this.StartPosition = FormStartPosition.Manual;
+            var primaryScreen = Screen.PrimaryScreen;
+            if (primaryScreen != null)
+            {
+                this.Location = new Point(0, primaryScreen.WorkingArea.Height - this.Height);
+            }
         }
 
         private void Fornecedores_Load(object sender, EventArgs e)
@@ -18,18 +26,20 @@ namespace CoreCRUD
             Incluir.Enabled = true;
             Pesquisar.Enabled = true;
             Gravar.Enabled = false;
-            Alterar.Enabled = false;
+            Alterar.Enabled = false; // Novo botão Alterar
         }
 
         private void Incluir_Click(object sender, EventArgs e)
         {
             // Limpar os campos para inclusão de um novo fornecedor
             LimparCampos();
+            fornecedorId = null; // Resetar o ID do fornecedor
 
             // Alterar o estado dos botões
             Incluir.Enabled = false;
             Pesquisar.Enabled = false;
             Gravar.Enabled = true;
+            Alterar.Enabled = false;
         }
 
         private void Gravar_Click(object sender, EventArgs e)
@@ -40,25 +50,6 @@ namespace CoreCRUD
                 return;
             }
 
-            string createTableQuery = @"
-                   CREATE TABLE CADFORNECEDORES (
-                       ID INTEGER NOT NULL PRIMARY KEY,
-                       NOMEEMPRESA VARCHAR(100),
-                       NOMEFANTASIA VARCHAR(100),
-                       CNPJ VARCHAR(20),
-                       INSCRICAOESTADUAL VARCHAR(20),
-                       ENDERECO VARCHAR(100),
-                       NUMERO VARCHAR(10),
-                       COMPLEMENTO VARCHAR(50),
-                       CEP VARCHAR(10),
-                       NOMECIDADE VARCHAR(50),
-                       UF VARCHAR(2),
-                       CELULAR VARCHAR(15),
-                       TELEFONE VARCHAR(15),
-                       EMAIL VARCHAR(100),
-                       DATAALTERACAO TIMESTAMP
-                   )";
-
             string insertQuery = "INSERT INTO CADFORNECEDORES (NOMEEMPRESA, NOMEFANTASIA, CNPJ, INSCRICAOESTADUAL, ENDERECO, NUMERO, COMPLEMENTO, CEP, NOMECIDADE, UF, CELULAR, TELEFONE, EMAIL, DATAALTERACAO) " +
                                  "VALUES (@NomeEmpresa, @NomeFantasia, @CNPJ, @InscricaoEstadual, @Endereco, @Numero, @Complemento, @CEP, @NomeCidade, @UF, @Celular, @Telefone, @Email, @DataAlteracao)";
 
@@ -67,33 +58,6 @@ namespace CoreCRUD
                 using (var connection = ConfigReader.GetDatabaseConnection())
                 {
                     connection.Open();
-
-                    // Verificar se a tabela existe e criar se necessário
-                    if (!TabelaExiste(connection, "CADFORNECEDORES"))
-                    {
-                        using (var createCommand = new FbCommand(createTableQuery, connection))
-                        {
-                            createCommand.ExecuteNonQuery();
-                        }
-
-                        // Criar gerador e gatilho
-                        using (var createGeneratorCommand = new FbCommand("CREATE GENERATOR GEN_CADFORNECEDORES_ID; SET GENERATOR GEN_CADFORNECEDORES_ID TO 0;", connection))
-                        {
-                            createGeneratorCommand.ExecuteNonQuery();
-                        }
-
-                        using (var createTriggerCommand = new FbCommand(@"
-                               CREATE TRIGGER BI_CADFORNECEDORES_ID FOR CADFORNECEDORES
-                               ACTIVE BEFORE INSERT POSITION 0
-                               AS
-                               BEGIN
-                                 IF (NEW.ID IS NULL) THEN
-                                   NEW.ID = GEN_ID(GEN_CADFORNECEDORES_ID, 1);
-                               END;", connection))
-                        {
-                            createTriggerCommand.ExecuteNonQuery();
-                        }
-                    }
 
                     using (var command = new FbCommand(insertQuery, connection))
                     {
@@ -108,6 +72,7 @@ namespace CoreCRUD
                 Incluir.Enabled = true;
                 Pesquisar.Enabled = true;
                 Gravar.Enabled = false;
+                Alterar.Enabled = false;
             }
             catch (FbException fbEx)
             {
@@ -119,24 +84,80 @@ namespace CoreCRUD
             }
         }
 
-        private bool TabelaExiste(FbConnection connection, string tableName)
-        {
-            string query = $"SELECT COUNT(*) FROM RDB$RELATIONS WHERE RDB$RELATION_NAME = '{tableName.ToUpper()}'";
-            using (var command = new FbCommand(query, connection))
-            {
-                return (long)command.ExecuteScalar() > 0;
-            }
-        }
-
         private void Alterar_Click(object sender, EventArgs e)
         {
-            // Lógica para alterar um fornecedor existente
+            if (!ValidarCampos())
+            {
+                MessageBox.Show("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            string updateQuery = "UPDATE CADFORNECEDORES SET NOMEEMPRESA = @NomeEmpresa, NOMEFANTASIA = @NomeFantasia, CNPJ = @CNPJ, INSCRICAOESTADUAL = @InscricaoEstadual, ENDERECO = @Endereco, NUMERO = @Numero, COMPLEMENTO = @Complemento, CEP = @CEP, NOMECIDADE = @NomeCidade, UF = @UF, CELULAR = @Celular, TELEFONE = @Telefone, EMAIL = @Email, DATAALTERACAO = @DataAlteracao WHERE ID = @ID";
+
+            try
+            {
+                using (var connection = ConfigReader.GetDatabaseConnection())
+                {
+                    connection.Open();
+
+                    using (var command = new FbCommand(updateQuery, connection))
+                    {
+                        AdicionarParametros(command);
+                        command.Parameters.AddWithValue("@ID", fornecedorId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show("Fornecedor atualizado com sucesso!");
+                LimparCampos();
+
+                // Alterar o estado dos botões
+                Incluir.Enabled = true;
+                Pesquisar.Enabled = true;
+                Gravar.Enabled = false;
+                Alterar.Enabled = false;
+            }
+            catch (FbException fbEx)
+            {
+                MessageBox.Show("Erro ao atualizar Fornecedor: " + fbEx.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro inesperado: " + ex.Message);
+            }
         }
 
         private void Pesquisar_Click(object sender, EventArgs e)
         {
-            // Lógica para pesquisar fornecedores
+            using (var pesquisaForm = new PesquisaFornecedores())
+            {
+                if (pesquisaForm.ShowDialog() == DialogResult.OK)
+                {
+                    var fornecedor = pesquisaForm.FornecedorSelecionado;
+                    if (fornecedor != null)
+                    {
+                        fornecedorId = Convert.ToInt32(fornecedor["ID"]); // Armazenar o ID do fornecedor
+                        NomeEmpresa.Text = fornecedor["NOMEEMPRESA"].ToString();
+                        NomeFantasia.Text = fornecedor["NOMEFANTASIA"].ToString();
+                        CNPJ.Text = fornecedor["CNPJ"].ToString();
+                        InscricaoEstadual.Text = fornecedor["INSCRICAOESTADUAL"].ToString();
+                        Endereco.Text = fornecedor["ENDERECO"].ToString();
+                        Numero.Text = fornecedor["NUMERO"].ToString();
+                        Complemento.Text = fornecedor["COMPLEMENTO"].ToString();
+                        CEP.Text = fornecedor["CEP"].ToString();
+                        NomeCidade.Text = fornecedor["NOMECIDADE"].ToString();
+                        comboBoxUF.SelectedItem = fornecedor["UF"].ToString();
+                        celular.Text = fornecedor["CELULAR"].ToString();
+                        telefone.Text = fornecedor["TELEFONE"].ToString();
+                        email.Text = fornecedor["EMAIL"].ToString();
+                        // Alterar o estado dos botões
+                        Incluir.Enabled = false;
+                        Gravar.Enabled = false;
+                        Alterar.Enabled = true;
+                    }
+                }
+            }
         }
+
 
         private void LimparCampos()
         {

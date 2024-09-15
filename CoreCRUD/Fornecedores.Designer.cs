@@ -52,22 +52,20 @@
             label3 = new Label();
             NomeFantasia = new TextBox();
             panel1 = new Panel();
+            Alterar = new Button();
+            Incluir = new Button();
+            Gravar = new Button();
+            Pesquisar = new Button();
             label2 = new Label();
             NomeEmpresa = new TextBox();
             label1 = new Label();
-            Gravar = new Button();
-            Alterar = new Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            Incluir = new Button();
-            Pesquisar = new Button();
             panel1.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // InscricaoEstadual
             // 
             InscricaoEstadual.Font = new Font("Segoe UI", 9F);
-            InscricaoEstadual.Location = new Point(235, 123);
+            InscricaoEstadual.Location = new Point(229, 180);
             InscricaoEstadual.Name = "InscricaoEstadual";
             InscricaoEstadual.Size = new Size(187, 23);
             InscricaoEstadual.TabIndex = 28;
@@ -75,7 +73,7 @@
             // email
             // 
             email.Font = new Font("Segoe UI", 9F);
-            email.Location = new Point(12, 343);
+            email.Location = new Point(6, 400);
             email.Name = "email";
             email.Size = new Size(413, 23);
             email.TabIndex = 26;
@@ -84,7 +82,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label12.Location = new Point(12, 325);
+            label12.Location = new Point(6, 382);
             label12.Name = "label12";
             label12.Size = new Size(44, 15);
             label12.TabIndex = 27;
@@ -93,7 +91,7 @@
             // celular
             // 
             celular.Font = new Font("Segoe UI", 9F);
-            celular.Location = new Point(12, 299);
+            celular.Location = new Point(6, 356);
             celular.Name = "celular";
             celular.Size = new Size(187, 23);
             celular.TabIndex = 25;
@@ -102,7 +100,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label11.Location = new Point(235, 281);
+            label11.Location = new Point(229, 338);
             label11.Name = "label11";
             label11.Size = new Size(59, 15);
             label11.TabIndex = 24;
@@ -111,7 +109,7 @@
             // telefone
             // 
             telefone.Font = new Font("Segoe UI", 9F);
-            telefone.Location = new Point(235, 299);
+            telefone.Location = new Point(229, 356);
             telefone.Name = "telefone";
             telefone.Size = new Size(190, 23);
             telefone.TabIndex = 23;
@@ -120,7 +118,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label10.Location = new Point(12, 281);
+            label10.Location = new Point(6, 338);
             label10.Name = "label10";
             label10.Size = new Size(48, 15);
             label10.TabIndex = 22;
@@ -130,7 +128,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label9.Location = new Point(345, 237);
+            label9.Location = new Point(339, 294);
             label9.Name = "label9";
             label9.Size = new Size(25, 15);
             label9.TabIndex = 20;
@@ -141,7 +139,7 @@
             comboBoxUF.Font = new Font("Segoe UI", 9F);
             comboBoxUF.FormattingEnabled = true;
             comboBoxUF.Items.AddRange(new object[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" });
-            comboBoxUF.Location = new Point(345, 255);
+            comboBoxUF.Location = new Point(339, 312);
             comboBoxUF.Name = "comboBoxUF";
             comboBoxUF.Size = new Size(80, 23);
             comboBoxUF.TabIndex = 19;
@@ -150,7 +148,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label8.Location = new Point(136, 193);
+            label8.Location = new Point(130, 250);
             label8.Name = "label8";
             label8.Size = new Size(89, 15);
             label8.TabIndex = 18;
@@ -159,7 +157,7 @@
             // Complemento
             // 
             Complemento.Font = new Font("Segoe UI", 9F);
-            Complemento.Location = new Point(136, 211);
+            Complemento.Location = new Point(130, 268);
             Complemento.Name = "Complemento";
             Complemento.Size = new Size(133, 23);
             Complemento.TabIndex = 17;
@@ -168,7 +166,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label7.Location = new Point(235, 105);
+            label7.Location = new Point(229, 162);
             label7.Name = "label7";
             label7.Size = new Size(104, 15);
             label7.TabIndex = 16;
@@ -177,7 +175,7 @@
             // CNPJ
             // 
             CNPJ.Font = new Font("Segoe UI", 9F);
-            CNPJ.Location = new Point(12, 123);
+            CNPJ.Location = new Point(6, 180);
             CNPJ.Name = "CNPJ";
             CNPJ.Size = new Size(187, 23);
             CNPJ.TabIndex = 13;
@@ -186,7 +184,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label6.Location = new Point(12, 105);
+            label6.Location = new Point(6, 162);
             label6.Name = "label6";
             label6.Size = new Size(34, 15);
             label6.TabIndex = 14;
@@ -195,7 +193,7 @@
             // NomeCidade
             // 
             NomeCidade.Font = new Font("Segoe UI", 9F);
-            NomeCidade.Location = new Point(12, 255);
+            NomeCidade.Location = new Point(6, 312);
             NomeCidade.Name = "NomeCidade";
             NomeCidade.Size = new Size(282, 23);
             NomeCidade.TabIndex = 11;
@@ -204,7 +202,7 @@
             // 
             Cidade.AutoSize = true;
             Cidade.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Cidade.Location = new Point(12, 237);
+            Cidade.Location = new Point(6, 294);
             Cidade.Name = "Cidade";
             Cidade.Size = new Size(44, 15);
             Cidade.TabIndex = 12;
@@ -214,7 +212,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label5.Location = new Point(289, 193);
+            label5.Location = new Point(283, 250);
             label5.Name = "label5";
             label5.Size = new Size(30, 15);
             label5.TabIndex = 10;
@@ -223,7 +221,7 @@
             // CEP
             // 
             CEP.Font = new Font("Segoe UI", 9F);
-            CEP.Location = new Point(289, 211);
+            CEP.Location = new Point(283, 268);
             CEP.Name = "CEP";
             CEP.Size = new Size(136, 23);
             CEP.TabIndex = 9;
@@ -232,7 +230,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label4.Location = new Point(12, 193);
+            label4.Location = new Point(6, 250);
             label4.Name = "label4";
             label4.Size = new Size(59, 15);
             label4.TabIndex = 8;
@@ -241,7 +239,7 @@
             // Numero
             // 
             Numero.Font = new Font("Segoe UI", 9F);
-            Numero.Location = new Point(12, 211);
+            Numero.Location = new Point(6, 268);
             Numero.Name = "Numero";
             Numero.Size = new Size(95, 23);
             Numero.TabIndex = 7;
@@ -249,7 +247,7 @@
             // Endereco
             // 
             Endereco.Font = new Font("Segoe UI", 9F);
-            Endereco.Location = new Point(12, 167);
+            Endereco.Location = new Point(6, 224);
             Endereco.Name = "Endereco";
             Endereco.Size = new Size(413, 23);
             Endereco.TabIndex = 5;
@@ -258,7 +256,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(12, 149);
+            label3.Location = new Point(6, 206);
             label3.Name = "label3";
             label3.Size = new Size(59, 15);
             label3.TabIndex = 6;
@@ -267,14 +265,18 @@
             // NomeFantasia
             // 
             NomeFantasia.Font = new Font("Segoe UI", 9F);
-            NomeFantasia.Location = new Point(12, 79);
+            NomeFantasia.Location = new Point(6, 136);
             NomeFantasia.Name = "NomeFantasia";
             NomeFantasia.Size = new Size(413, 23);
             NomeFantasia.TabIndex = 0;
             // 
             // panel1
             // 
+            panel1.Controls.Add(Alterar);
+            panel1.Controls.Add(Incluir);
+            panel1.Controls.Add(Gravar);
             panel1.Controls.Add(InscricaoEstadual);
+            panel1.Controls.Add(Pesquisar);
             panel1.Controls.Add(email);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(celular);
@@ -300,16 +302,60 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(NomeEmpresa);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(14, 66);
+            panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(435, 380);
+            panel1.Size = new Size(433, 437);
             panel1.TabIndex = 1;
+            // 
+            // Alterar
+            // 
+            Alterar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            Alterar.Location = new Point(220, 3);
+            Alterar.Name = "Alterar";
+            Alterar.Size = new Size(101, 40);
+            Alterar.TabIndex = 29;
+            Alterar.Text = "Alterar";
+            Alterar.UseVisualStyleBackColor = true;
+            Alterar.Click += Alterar_Click;
+            // 
+            // Incluir
+            // 
+            Incluir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            Incluir.Location = new Point(6, 3);
+            Incluir.Name = "Incluir";
+            Incluir.Size = new Size(101, 40);
+            Incluir.TabIndex = 3;
+            Incluir.Text = "Incluir";
+            Incluir.UseVisualStyleBackColor = true;
+            Incluir.Click += Incluir_Click;
+            // 
+            // Gravar
+            // 
+            Gravar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            Gravar.Location = new Point(113, 3);
+            Gravar.Name = "Gravar";
+            Gravar.Size = new Size(101, 40);
+            Gravar.TabIndex = 2;
+            Gravar.Text = "Gravar";
+            Gravar.UseVisualStyleBackColor = true;
+            Gravar.Click += Gravar_Click;
+            // 
+            // Pesquisar
+            // 
+            Pesquisar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            Pesquisar.Location = new Point(327, 3);
+            Pesquisar.Name = "Pesquisar";
+            Pesquisar.Size = new Size(101, 40);
+            Pesquisar.TabIndex = 4;
+            Pesquisar.Text = "Pesquisar";
+            Pesquisar.UseVisualStyleBackColor = true;
+            Pesquisar.Click += Pesquisar_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.Location = new Point(12, 61);
+            label2.Location = new Point(6, 118);
             label2.Name = "label2";
             label2.Size = new Size(90, 15);
             label2.TabIndex = 4;
@@ -318,7 +364,7 @@
             // NomeEmpresa
             // 
             NomeEmpresa.Font = new Font("Segoe UI", 9F);
-            NomeEmpresa.Location = new Point(12, 35);
+            NomeEmpresa.Location = new Point(6, 92);
             NomeEmpresa.Name = "NomeEmpresa";
             NomeEmpresa.Size = new Size(413, 23);
             NomeEmpresa.TabIndex = 3;
@@ -327,80 +373,25 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(12, 17);
+            label1.Location = new Point(6, 74);
             label1.Name = "label1";
             label1.Size = new Size(95, 15);
             label1.TabIndex = 0;
             label1.Text = "Nome empresa:";
-            // 
-            // Gravar
-            // 
-            Gravar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Gravar.Location = new Point(217, 3);
-            Gravar.Name = "Gravar";
-            Gravar.Size = new Size(101, 40);
-            Gravar.TabIndex = 2;
-            Gravar.Text = "Gravar";
-            Gravar.UseVisualStyleBackColor = true;
-            Gravar.Click += Gravar_Click;
-            // 
-            // Alterar
-            // 
-            Alterar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Alterar.Location = new Point(110, 3);
-            Alterar.Name = "Alterar";
-            Alterar.Size = new Size(101, 40);
-            Alterar.TabIndex = 1;
-            Alterar.Text = "Alterar";
-            Alterar.UseVisualStyleBackColor = true;
-            Alterar.Click += Alterar_Click;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Controls.Add(Incluir);
-            flowLayoutPanel1.Controls.Add(Alterar);
-            flowLayoutPanel1.Controls.Add(Gravar);
-            flowLayoutPanel1.Controls.Add(Pesquisar);
-            flowLayoutPanel1.Location = new Point(11, 12);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(436, 48);
-            flowLayoutPanel1.TabIndex = 2;
-            // 
-            // Incluir
-            // 
-            Incluir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Incluir.Location = new Point(3, 3);
-            Incluir.Name = "Incluir";
-            Incluir.Size = new Size(101, 40);
-            Incluir.TabIndex = 3;
-            Incluir.Text = "Incluir";
-            Incluir.UseVisualStyleBackColor = true;
-            Incluir.Click += Incluir_Click;
-            // 
-            // Pesquisar
-            // 
-            Pesquisar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            Pesquisar.Location = new Point(324, 3);
-            Pesquisar.Name = "Pesquisar";
-            Pesquisar.Size = new Size(101, 40);
-            Pesquisar.TabIndex = 4;
-            Pesquisar.Text = "Pesquisar";
-            Pesquisar.UseVisualStyleBackColor = true;
-            Pesquisar.Click += Pesquisar_Click;
             // 
             // Fornecedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(464, 461);
-            Controls.Add(flowLayoutPanel1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Fornecedores";
             Text = "Fornecedores";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -434,9 +425,8 @@
         private TextBox NomeEmpresa;
         private Label label1;
         private Button Gravar;
-        private Button Alterar;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Button Incluir;
         private Button Pesquisar;
+        private Button Alterar;
     }
 }

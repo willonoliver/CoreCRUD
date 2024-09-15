@@ -132,6 +132,7 @@
             ClientSize = new Size(454, 331);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "Login";
             Text = "Login - CoreCRUD";
             panel1.ResumeLayout(false);

@@ -110,5 +110,21 @@ namespace CoreCRUD
                 fornecedoresForm.ShowDialog();
             }
         }
+
+        private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var gerenciadorDeUsuariosForm = new GerenciadorDeUsuarios())
+            {
+                gerenciadorDeUsuariosForm.ShowDialog();
+            }
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var clientesForm = new Clientes())
+            {
+                clientesForm.ShowDialog();
+            }
+        }
     }
 }

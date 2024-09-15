@@ -127,7 +127,9 @@
             // 
             ClientSize = new Size(454, 331);
             Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "GerenciadorDeUsuarios";
             Text = "Gerenciador de Usuários";
             panel1.ResumeLayout(false);
