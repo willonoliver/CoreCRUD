@@ -10,7 +10,7 @@ namespace CoreCRUD
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PesquisaProdutos());
+            Application.Run(new Login());
         }
     }
 }
