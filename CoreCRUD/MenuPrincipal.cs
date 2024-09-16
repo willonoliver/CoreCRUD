@@ -113,9 +113,9 @@ namespace CoreCRUD
 
         private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var gerenciadorDeUsuariosForm = new GerenciadorDeUsuarios())
+            using (var UsuariosForm = new Usuarios())
             {
-                gerenciadorDeUsuariosForm.ShowDialog();
+                UsuariosForm.ShowDialog();
             }
         }
 

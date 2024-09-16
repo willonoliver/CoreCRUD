@@ -17,6 +17,7 @@ namespace CoreCRUD
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen; // Centralizar a tela no meio do monitor
+            senha.PasswordChar = '*'; // Mascarar a senha com asteriscos
         }
 
         private void usuario_TextChanged(object sender, EventArgs e)

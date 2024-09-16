@@ -5,11 +5,11 @@ using FirebirdSql.Data.FirebirdClient;
 
 namespace CoreCRUD
 {
-    public partial class GerenciadorDeUsuarios : Form
+    public partial class Usuarios : Form
     {
         private const int maxRetries = 3;
 
-        public GerenciadorDeUsuarios()
+        public Usuarios()
         {
             InitializeComponent();
             InicializarEstado();
@@ -20,6 +20,7 @@ namespace CoreCRUD
             {
                 this.Location = new Point(0, primaryScreen.WorkingArea.Height - this.Height);
             }
+            txtPassword.PasswordChar = '*'; // Mascarar a senha com asteriscos
         }
 
         private void InicializarEstado()
@@ -177,6 +178,5 @@ namespace CoreCRUD
         {
             // Implementar se necessário
         }
-
     }
 }
